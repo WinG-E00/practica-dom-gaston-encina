@@ -32,6 +32,24 @@ const btnCharacterView = document.querySelector("#ver_personajes");
 const rowHeroContainer = document.querySelector("#row_hero_container");
 
 
+btnCharacterView.addEventListener('click', () => {
+  console.log("hola")
+  personajes.forEach(heroe => {
+
+    rowHeroContainer.insertAdjacentHTML(
+      'beforeend',
+      `<div class="col">
+        <div class="card" style="width: 18rem;">
+          <img src="${heroe.imagen}" class="card-img-top" alt="${heroe.nombre}">
+          <div class="card-body">
+            <h5 class="card-title">${heroe.nombre}</h5>
+          </div>
+        </div>
+      </div>`
+    );
+
+  });
+});
 
 
 
