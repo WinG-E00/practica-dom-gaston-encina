@@ -26,9 +26,10 @@ const personajes = [
   }
 ];
 
-
+//Botones
 const btnCharacterView = document.querySelector("#ver_personajes");
 
+//Contedor grid donde van los personajes
 const rowHeroContainer = document.querySelector("#row_hero_container");
 
 
@@ -49,6 +50,7 @@ btnCharacterView.addEventListener('click', () => {
           <div class="card-body">
             <h5 class="card-title">${heroe.nombre}</h5>
           </div>
+          <div class="btn btn-danger" id="btnEliminarPersonaje">Eliminar Personaje</div>
         </div>
       </div>`
     );
@@ -61,6 +63,31 @@ btnCharacterView.addEventListener('click', () => {
   
 });
 
+
+
+//FEATURE para eliminar a los personajes
+rowHeroContainer.addEventListener('click', (event) => {
+  console.log(event.target.parentElement)
+  console.log(event.target)
+  console.log(typeof event.target.id)
+
+  const btnEliminarPersonaje = document.querySelector('#btnEliminarPersonaje');
+
+ //if (event.target.id == "btnEliminarPersonaje" ){
+ //   event.target.parentElement.dataset
+ // }
+
+
+
+})
+
+
+//Feature para eliminar los personajes intento #1
+btnEliminarPersonaje.addEventListener(click, () => {
+
+
+
+} );
 
 
 
