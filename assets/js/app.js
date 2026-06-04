@@ -26,70 +26,124 @@ const personajes = [
   }
 ];
 
+
+
 //Botones
 const btnCharacterView = document.querySelector("#ver_personajes");
 
 //Contedor grid donde van los personajes
 const rowHeroContainer = document.querySelector("#row_hero_container");
 
+//boton para subir personaje
+const btnSubirPersonae = document.querySelector("#btnSubirPersonaje");
+
+//Formulario para subir personajes
+const formularioPersonajes = document.querySelector("#formularioPersonajes");
+
+
+console.log(rowHeroContainer)
+
 
 
 // Feature para ver los personajes
 btnCharacterView.addEventListener('click', () => {
-  
-  if (rowHeroContainer.textContent != ""){
-    return console.log("Este elemento ya tiene algo")
-  } else { 
-    personajes.forEach(heroe => {
+
+  if (rowHeroContainer.children.length > 0) {
+    console.log("Este elemento ya tiene algo");
+    return;
+  }
+
+  personajes.forEach(heroe => {
 
     rowHeroContainer.insertAdjacentHTML(
       'beforeend',
       `<div class="col">
-        <div class="card" style="width: 18rem;" data-id"${heroe.id}">
+        <div class="card" style="width: 18rem;" data-id="${heroe.id}">
           <img src="${heroe.imagen}" class="card-img-top" alt="${heroe.nombre}">
           <div class="card-body">
             <h5 class="card-title">${heroe.nombre}</h5>
           </div>
-          <div class="btn btn-danger" id="btnEliminarPersonaje">Eliminar Personaje</div>
+          <button class="btn btn-danger" id="btnEliminarPersonaje">
+            Eliminar Personaje
+          </button>
         </div>
       </div>`
     );
 
   });
-  }
+
+});
 
 
 
-  
+
+//Feature agregar personaje
+
+function renderPersonajes() {
+    rowHeroContainer.innerHTML = ""; // limpia todo
+
+    personajes.forEach(heroe => {
+        rowHeroContainer.insertAdjacentHTML(
+            "beforeend",
+            `<div class="col">
+                <div class="card" style="width: 18rem;" data-id="${heroe.id}">
+                    <img src="${heroe.imagen}" class="card-img-top" alt="${heroe.nombre}">
+                    <div class="card-body">
+                        <h5 class="card-title">${heroe.nombre}</h5>
+                    </div>
+                    <button class="btn btn-danger" id="btnEliminarPersonaje">
+                        Eliminar
+                    </button>
+                </div>
+            </div>`
+        );
+    });
+}
+
+
+formularioPersonajes.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const nombreForm = document.querySelector("#nombre");
+    const imagenForm = document.querySelector("#imagen");
+
+    personajes.push({
+        id: personajes.length + 1 ,
+        nombre: nombreForm.value,
+        imagen: imagenForm.value
+    });
+
+    renderPersonajes()
+    console.log(personajes);
 });
 
 
 
 //FEATURE para eliminar a los personajes
 rowHeroContainer.addEventListener('click', (event) => {
-  console.log(event.target.parentElement)
-  console.log(event.target)
-  console.log(typeof event.target.id)
 
-  const btnEliminarPersonaje = document.querySelector('#btnEliminarPersonaje');
+  console.log(event.target.id)
 
- //if (event.target.id == "btnEliminarPersonaje" ){
- //   event.target.parentElement.dataset
- // }
+  if (event.target.id == "btnEliminarPersonaje") {
+
+    console.log(event.target.parentElement.dataset.id)
+    const idDataset = event.target.parentElement.dataset.id;
 
 
+    const dataSetIdtoNumber = Number(idDataset) - 1;
 
-})
+    console.log(dataSetIdtoNumber)
 
+    const index = personajes.findIndex(p => p.id == Number(idDataset));
 
-//Feature para eliminar los personajes intento #1
-btnEliminarPersonaje.addEventListener(click, () => {
+    if (index !== -1) {
+      personajes.splice(index, 1);
+    }
 
-
-
-} );
-
-
+    console.log(personajes);
+    renderPersonajes();
+  }
+});
 
 
 
