@@ -1,0 +1,4 @@
+.tarjeta:hover{
+    background-color: rgb(133, 133, 133) ;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}

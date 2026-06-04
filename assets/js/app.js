@@ -58,8 +58,8 @@ function renderPersonajes() {
     personajes.forEach(heroe => {
         rowHeroContainer.insertAdjacentHTML(
             "beforeend",
-            `<div class="col">
-                <div class="card" style="width: 18rem;" data-id="${heroe.id}">
+            `<div class="col tarjeta">
+                <div class="card tarjeta" style="width: 18rem;" data-id="${heroe.id}">
                     <img src="${heroe.imagen}" class="card-img-top" alt="${heroe.nombre}">
                     <div class="card-body">
                         <h5 class="card-title">${heroe.nombre}</h5>
@@ -131,8 +131,8 @@ btnCharacterView.addEventListener('click', () => {
 
     rowHeroContainer.insertAdjacentHTML(
       'beforeend',
-      `<div class="col">
-        <div class="card" style="width: 18rem;" data-id="${heroe.id}">
+      `<div class="col ">
+        <div class="card tarjeta" style="width: 18rem;" data-id="${heroe.id}">
           <img src="${heroe.imagen}" class="card-img-top" alt="${heroe.nombre}">
           <div class="card-body">
             <h5 class="card-title">${heroe.nombre}</h5>
